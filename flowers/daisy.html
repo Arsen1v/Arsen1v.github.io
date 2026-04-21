@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daisy - BLOOM</title>
     <link rel="stylesheet" href="../product.css">
-    <script src="../cart.js"></script>
+    <script src="../cart.js" defer></script>
 </head>
 
 <body>
@@ -333,10 +333,6 @@
     <div id="cursor"></div>
     <div id="cursor-dot"></div>
     <script>
-        // Stock
-        let stock = parseInt(localStorage.getItem('bloom_stock_cherry') || '45');
-        document.getElementById('stock-count').textContent = stock;
-
         // Page loader
         window.addEventListener('load', function () {
             document.getElementById('page-loader').classList.add('hidden');
@@ -441,15 +437,7 @@
                 }
                 currentStock -= bouquets;
                 localStorage.setItem(stockKey, currentStock);
-                stock = currentStock;
-
-                const stockEl = document.getElementById('stock-count');
-                if (stockEl) {
-                    stockEl.textContent = currentStock;
-                    if (currentStock <= 5) stockEl.style.color = '#c0392b';
-                    else if (currentStock <= 15) stockEl.style.color = '#e67e22';
-                    else stockEl.style.color = '';
-                }
+                stock = currentStock; 
 
                 const { pricePerBouquet, total, bouquetDiscount } = calcPrice(size, stems, bouquets);
 
