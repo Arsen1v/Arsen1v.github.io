@@ -357,14 +357,18 @@
         document.getElementById(id).classList.add('active');
     }
 
-    // Viewers counter
-    let viewers = Math.floor(Math.random() * 15) + 18;
-    document.getElementById('viewers-count').textContent = viewers;
+ // Viewers counter
+let viewers = Math.floor(Math.random() * 15) + 18;
+window.addEventListener('DOMContentLoaded', function() {
+    const viewersEl = document.getElementById('viewers-count');
+    if (viewersEl) viewersEl.textContent = viewers;
     setInterval(() => {
         const change = Math.random() > 0.5 ? 1 : -1;
         viewers = Math.max(10, Math.min(50, viewers + change));
-        document.getElementById('viewers-count').textContent = viewers;
+        const el = document.getElementById('viewers-count');
+        if (el) el.textContent = viewers;
     }, 4000);
+});
 
     // Price logic
     const SIZE_PRICES = { 40: 19.99, 50: 28.99, 60: 34.99, 70: 41.99, 80: 49.99, 90: 57.99 };
