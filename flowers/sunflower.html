@@ -434,8 +434,9 @@
     </script>
 
 <script>
-    const btn = document.querySelector('.add-to-cart');
-    if (btn) {
+   const btn = document.querySelector('.add-to-cart');
+console.log('btn found:', btn);
+if (btn) {
         btn.addEventListener('click', function () {
             const titleEl = document.querySelector('.product-info h1');
             const size = parseInt(document.getElementById('size').value);
