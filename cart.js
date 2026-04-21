@@ -29,16 +29,18 @@ document.addEventListener('click', function (e) {
   }
 });
 
-document.querySelectorAll('.card').forEach(card => {
-  const btn = card.querySelector('.card-button');
-  const nameEl = card.querySelector('.card-title');
-  const priceEl = card.querySelector('.card-price');
-  if (!btn || !nameEl || !priceEl) return;
-  const name = nameEl.textContent;
-  const price = priceEl.textContent;
-  btn.addEventListener('click', function (e) {
-    e.preventDefault();
-    addToCart(name, price);
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.card').forEach(card => {
+    const btn = card.querySelector('.card-button');
+    const nameEl = card.querySelector('.card-title');
+    const priceEl = card.querySelector('.card-price');
+    if (!btn || !nameEl || !priceEl) return;
+    const name = nameEl.textContent;
+    const price = priceEl.textContent;
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      addToCart(name, price);
+    });
   });
 });
 
