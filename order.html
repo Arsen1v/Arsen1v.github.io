@@ -13,117 +13,6 @@
             if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-bloom-theme', t);
         })();
     </script>
-    <style>
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(20px);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        @keyframes popIn {
-            0% {
-                transform: scale(0.5);
-                opacity: 0;
-            }
-
-            70% {
-                transform: scale(1.15);
-                opacity: 1;
-            }
-
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        @keyframes shrinkBar {
-            from {
-                width: 160px;
-            }
-
-            to {
-                width: 0px;
-            }
-        }
-
-        body.alert-open #cursor,
-        body.alert-open #cursor-dot {
-            display: none !important;
-        }
-
-        body.alert-open,
-        body.alert-open * {
-            cursor: default !important;
-        }
-
-        #bloom-success-overlay {
-            position: fixed;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 99999;
-            animation: fadeIn 0.35s ease forwards;
-            cursor: default;
-        }
-
-        #bloom-success-overlay .success-emoji {
-            font-size: 36px;
-            font-weight: 800;
-            letter-spacing: 6px;
-            margin-bottom: 12px;
-            animation: popIn 0.5s ease forwards;
-        }
-
-        #bloom-success-overlay .success-title {
-            font-size: 30px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            font-family: 'Segoe UI', sans-serif;
-        }
-
-        #bloom-success-overlay .success-subtitle {
-            font-size: 15px;
-            color: #888;
-            margin-bottom: 24px;
-            font-family: 'Segoe UI', sans-serif;
-        }
-
-        #bloom-success-overlay .success-date {
-            font-size: 15px;
-            font-weight: 600;
-            margin-bottom: 16px;
-            font-family: 'Segoe UI', sans-serif;
-        }
-
-        #bloom-success-bar {
-            width: 160px;
-            height: 3px;
-            border-radius: 2px;
-            margin: 0 auto;
-        }
-
-        #bloom-success-bar.animate {
-            animation: shrinkBar 2.5s linear forwards;
-        }
-    </style>
 </head>
 
 <body>
@@ -131,7 +20,7 @@
     <div id="cursor-dot"></div>
 
     <nav class="navbar">
-        <a class="nav-logo" href="bloomsite.html">
+        <a class="nav-logo" href="index.html">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
                 <path d="M12 2C9 2 6 5 6 8c0 4 6 12 6 12s6-8 6-12c0-3-3-6-6-6z" fill="#c0392b" opacity="0.85" />
                 <circle cx="12" cy="8" r="2.2" fill="#fff" opacity="0.9" />
