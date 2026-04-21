@@ -432,6 +432,39 @@
         document.getElementById('bouquets').addEventListener('input', updatePrice);
     </script>
 
+<script>
+    const btn = document.querySelector('.add-to-cart');
+    if (btn) {
+        btn.addEventListener('click', function () {
+            const titleEl = document.querySelector('.product-info h1');
+            const size = parseInt(document.getElementById('size').value);
+            const stems = parseInt(document.getElementById('quantity').value) || 1;
+            const bouquets = parseInt(document.getElementById('bouquets').value) || 1;
+            const basePrice = SIZE_PRICES[size] || 18.99;
+            let stemPrice;
+            if (stems >= 20) stemPrice = basePrice * 0.10;
+            else if (stems >= 10) stemPrice = basePrice * 0.12;
+            else if (stems >= 5) stemPrice = basePrice * 0.14;
+            else stemPrice = basePrice * 0.15;
+            const pricePerBouquet = basePrice + (stems - 1) * stemPrice;
+            let bouquetDiscount = 0;
+            if (bouquets >= 10) bouquetDiscount = 0.20;
+            else if (bouquets >= 5) bouquetDiscount = 0.10;
+            else if (bouquets >= 3) bouquetDiscount = 0.05;
+            const total = pricePerBouquet * bouquets * (1 - bouquetDiscount);
+            const itemName = `${titleEl.textContent.trim()} — ${bouquets} bouquet${bouquets > 1 ? 's' : ''} × ${stems} flower${stems > 1 ? 's' : ''}, ${size}cm`;
+            const itemPrice = '$' + total.toFixed(2);
+            const cartMeta = JSON.parse(localStorage.getItem('bloom_cart_meta') || '[]');
+            cartMeta.push({ bouquets, stems, size, pricePerBouquet: pricePerBouquet.toFixed(2), discount: bouquetDiscount });
+            localStorage.setItem('bloom_cart_meta', JSON.stringify(cartMeta));
+            addToCart(itemName, itemPrice);
+            btn.textContent = '✓ Added!';
+            btn.style.background = '#2d6a2d';
+            setTimeout(() => { btn.textContent = 'Add to Cart'; btn.style.background = ''; }, 1500);
+        });
+    }
+</script>
+    
 </body>
 
 </html>
