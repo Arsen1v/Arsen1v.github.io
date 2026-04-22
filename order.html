@@ -419,8 +419,27 @@
                 if (selected < today) { showAlert('Please select a future delivery date.'); return; }
                 dateText = selected.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
             }
-            localStorage.removeItem('bloom_cart');
-            localStorage.removeItem('bloom_cart_meta');
+       var orderData = {
+    firstName: document.getElementById('fname') ? document.getElementById('fname').value.trim() : '',
+    lastName: document.getElementById('lname') ? document.getElementById('lname').value.trim() : '',
+    phone: document.getElementById('phone') ? document.getElementById('phone').value.trim() : '',
+    city: document.getElementById('city') ? document.getElementById('city').value.trim() : '',
+    address: document.getElementById('address') ? document.getElementById('address').value.trim() : '',
+    note: document.getElementById('note') ? document.getElementById('note').value.trim() : '',
+    deliveryDate: document.getElementById('delivery-date') ? document.getElementById('delivery-date').value : '',
+    delivery: delivery,
+    items: JSON.parse(localStorage.getItem('bloom_cart') || '[]').map(function(i){ return i.name + ' — ' + i.price; }).join(' | '),
+    total: document.getElementById('order-total').textContent,
+    promo: document.getElementById('promo-input').value.trim() || '—'
+};
+
+fetch("https://script.google.com/macros/s/AKfycbxS5HkmKNDq7vvta3JIOZzx3Evu0iwOcrOwHPeNQbMbmZCESklDUQ4EOC_5yGEfCcoxfw/exec", {
+    method: "POST",
+    body: JSON.stringify(orderData)
+}).catch(function(){});
+
+localStorage.removeItem('bloom_cart');
+localStorage.removeItem('bloom_cart_meta');
             var btn = document.querySelector('.place-order-btn');
             if (btn) { btn.textContent = '✓ ' + t('order.success.title'); btn.style.background = '#2d6a2d'; btn.style.pointerEvents = 'none'; }
             showSuccess(dateText, isPickup);
